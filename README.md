@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/jmoloko/RESTServletApp.svg?branch=main)](https://app.travis-ci.com/jmoloko/RESTServletApp)
+
 ### Simple REST application in Java Servlets
 
 This REST API interacts with file storage and provides the ability to access files and download history.
