@@ -5,6 +5,6 @@ package com.milk.restapp.model;
  */
 public enum Occasion {
 
-    DOWNLOAD, UPLOAD, RENAME, CHANGE_PATH,
+    DOWNLOAD, UPLOAD, RENAME, DELETE
 
 }

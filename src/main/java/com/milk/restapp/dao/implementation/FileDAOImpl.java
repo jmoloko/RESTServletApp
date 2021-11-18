@@ -5,6 +5,7 @@ import com.milk.restapp.model.File;
 import com.milk.restapp.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class FileDAOImpl implements FileDAO {
     @Override
     public List<File> getAll() {
         try (Session session = HibernateUtil.sessionFactory.openSession()) {
-            return session.createQuery("SELECT f FROM File f LEFT JOIN FETCH f.events ").list();
+            return session.createQuery("SELECT f FROM File f").list();
         }
     }
 
@@ -24,6 +25,16 @@ public class FileDAOImpl implements FileDAO {
     public File getById(Integer id) {
         try (Session session = HibernateUtil.sessionFactory.openSession()) {
             return session.get(File.class, id);
+        }
+    }
+
+    public List<File> getFilesByUserId(Integer id) {
+        try (Session session = HibernateUtil.sessionFactory.openSession()){
+            Query query = session.createSQLQuery("SELECT DISTINCT f.*\n" +
+                    "FROM file as f\n" +
+                    "LEFT JOIN event e on f.id = e.file\n" +
+                    "WHERE e.user = :id").addEntity(File.class);
+            return query.setParameter("id", id).list();
         }
     }
 

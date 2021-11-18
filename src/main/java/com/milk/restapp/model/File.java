@@ -1,10 +1,8 @@
 package com.milk.restapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,8 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "file")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class File {
 
@@ -23,31 +20,22 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
-    private User user;
-
     private String name;
 
     private String path;
 
-    @OneToMany(fetch = FetchType.EAGER,  mappedBy = "file")
-    private List<Event> events;
-
-    public File(User user, String name, String path) {
-        this.user = user;
-        this.name = name;
-        this.path = path;
-    }
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.LAZY,  mappedBy = "file")
+    private List<Event> event;
 
     public File(String name, String path) {
         this.name = name;
         this.path = path;
     }
 
-    @Override
-    public String toString() {
-        return "File: " + "id: " + id + ", name: " + name + ", path: " + path + ", events: " + events;
+    public File(int id, String name, String path) {
+        this.id = id;
+        this.name = name;
+        this.path = path;
     }
 }

@@ -1,9 +1,9 @@
 package com.milk.restapp.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,9 +13,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "user")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -24,8 +24,9 @@ public class User {
 
     private String name;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "user")
-    private List<File> files;
+    private List<Event> events;
 
     public User(String name) {
         this.name = name;
@@ -34,10 +35,5 @@ public class User {
     public User(int id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "User: " + id + ", name: " + name + ", files: " + files;
     }
 }

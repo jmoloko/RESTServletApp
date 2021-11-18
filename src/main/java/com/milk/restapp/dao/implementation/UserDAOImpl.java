@@ -17,14 +17,14 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> getAll() {
         try (Session session = HibernateUtil.sessionFactory.openSession()) {
-            return session.createQuery("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.files ").list();
+            return session.createQuery("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.events").list();
         }
     }
 
     @Override
     public User getById(Integer id) {
         try (Session session = HibernateUtil.sessionFactory.openSession()) {
-            Query query = session.createQuery("SELECT u FROM User u LEFT JOIN FETCH u.files WHERE u.id = :id");
+            Query query = session.createQuery("SELECT u FROM User u LEFT JOIN FETCH u.events WHERE u.id = :id");
             query.setParameter("id", id);
             return (User) query.getSingleResult();
         }

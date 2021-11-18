@@ -7,7 +7,7 @@ import org.flywaydb.core.Flyway;
  */
 public class FlywayUtil {
 
-    private static final String URL = "jdbc:mysql://localhost/rest_db";
+    private static final String URL = "jdbc:mysql://localhost/rest";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 
