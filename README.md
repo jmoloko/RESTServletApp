@@ -1,4 +1,5 @@
 [![Build Status](https://app.travis-ci.com/jmoloko/RESTServletApp.svg?branch=main)](https://app.travis-ci.com/jmoloko/RESTServletApp)
+[![CircleCI](https://circleci.com/gh/jmoloko/RESTServletApp/tree/circleci-project-setup.svg?style=svg)](https://circleci.com/gh/jmoloko/RESTServletApp/tree/circleci-project-setup)
 
 ### Simple REST application in Java Servlets
 
